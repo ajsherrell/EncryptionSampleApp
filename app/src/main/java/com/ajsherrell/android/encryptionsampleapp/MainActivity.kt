@@ -31,10 +31,7 @@ class MainActivity : AppCompatActivity() {
     var privateKey: RSAPrivateKey? = null
     private lateinit var encryptedBytes: ByteArray
     private lateinit var decryptedBytes: ByteArray
-    private var toMessage: ObservableField<String> = ObservableField("")
     private var displayedMessage: ObservableField<String> = ObservableField("Show result here.")
-    private var fromMessage: ObservableField<String> = ObservableField("")
-    var isEncrypted = ObservableBoolean(false)
 
     init {
         generateKeyPair()
@@ -52,13 +49,11 @@ class MainActivity : AppCompatActivity() {
         fromTextView = binding.fromMessage
         fromTextView.text = displayedMessage.get()
 
-        toMessage.set(editText.text.toString())
         encryptButton.setOnClickListener {
             encryptThis()
             fromTextView.text = displayedMessage.get()
         }
 
-        fromMessage.set(fromTextView.text.toString())
         decryptButton.setOnClickListener {
             decryptThis()
             fromTextView.text = displayedMessage.get()
@@ -68,21 +63,17 @@ class MainActivity : AppCompatActivity() {
             editText.text?.clear()
             fromTextView.text = getString(R.string.clear_result)
             displayedMessage.set("")
-            fromMessage.set("")
-            toMessage.set("")
         }
     }
 
     private fun encryptThis() {
         val messageToEncrypt = editText.text.toString()
-        isEncrypted.set(true)
         displayedMessage.set(encrypt(messageToEncrypt))
         Log.i(this.toString(), "Message is: Start--- ${displayedMessage.get()} ---End")
     }
 
     private fun decryptThis() {
         val messageToDecrypt = fromTextView.text.toString()
-        isEncrypted.set(false)
         displayedMessage.set(decrypt(messageToDecrypt))
         Log.i(this.toString(), "Message is: Start--- ${displayedMessage.get()} ---End")
     }
