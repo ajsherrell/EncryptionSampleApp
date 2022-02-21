@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EncryptionSampleApp</string>
+    <string name="encrypt">Encrypt</string>
+    <string name="decrypt">Decrypt</string>
+    <string name="message_to_encrypt">Message to encrypt…</string>
+    <string name="show_result_here">Show result here.</string>
+    <string name="clear">Clear</string>
+    <string name="clear_result">Result cleared!</string>
+</resources>
