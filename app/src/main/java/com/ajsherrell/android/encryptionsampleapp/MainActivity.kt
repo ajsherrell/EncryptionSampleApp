@@ -48,14 +48,19 @@ class MainActivity : AppCompatActivity() {
         decryptButton = binding.decryptButton
         fromTextView = binding.fromMessage
         fromTextView.text = displayedMessage.get()
+        decryptButton.isEnabled = false
 
         encryptButton.setOnClickListener {
             encryptThis()
+            decryptButton.isEnabled = true
+            encryptButton.isEnabled = false
             fromTextView.text = displayedMessage.get()
         }
 
         decryptButton.setOnClickListener {
             decryptThis()
+            decryptButton.isEnabled = false
+            encryptButton.isEnabled = true
             fromTextView.text = displayedMessage.get()
         }
 
